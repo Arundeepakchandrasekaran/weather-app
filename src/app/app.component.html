@@ -1,0 +1,213 @@
+
+
+  <body>
+    <div class="container-fluid">
+      <div class="row1">
+        <div class="col-12">
+          <div class="main" >
+            <div class="row">
+              <div class="col-12">        
+                <div class="content1">
+                  <mat-form-field>
+                    <mat-label>Select city</mat-label>
+                    <mat-select [(ngModel)]='cityModel' (selectionChange)='getData(cityModel)'>
+                      <mat-option *ngFor="let city of cities" [value]="city">
+                        {{city}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="header">
+                <div class="col-4">
+                  <div class="label">
+                    <div class="labelW1">
+                      <span> <b>CURRENT WEATHER</b></span>
+                    </div>
+                    <div class="labelW2">
+                      <span> {{ weather[0].list[0].main.feels_like - 273.15 | number : '1.0-0'}}  </span> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="con">
+                    COUNTRY:
+                    <div>
+                      {{ weather[0].list[0].sys.country}} 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="city">
+                    CITY:
+                    <div>
+                      {{ weather[0].list[0].name }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="center">
+                <div class="col-2">
+                  <div class="img">
+                    <img src='../assets/sun.png' alt="Sun">        
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="temp">
+                    {{ weather[0].list[0].main.temp-273.15 | number : '1.0-0'}} C 
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="rep">
+                    {{ weather[0].list[0].weather[0].description}}
+                    <div class="feellike">
+                      FEELS LIKE: {{ weather[0].list[0].main.feels_like -273.15 | number : '1.0-0'}} C
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="content">
+                <span>Expect partly sunny skies. The high will be {{ weather[0].list[0].main.temp - 273.15 | number : '1.0-0'}} <b>C</b></span> 
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="footer">
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="min">
+                    MIN TEMP: 
+                    <div> {{ weather[0].list[0].main.temp_min - 273.15 | number : '1.0-0'}} <b>C</b> </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="max">
+                    MAX TEMP:
+                    <div> {{ weather[0].list[0].main.temp_max - 273.15 | number : '1.0-0'}} <b>C </b> </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="wind">
+                    WIND:
+                    <div> {{ weather[0].list[0].wind.speed}} <b>Km/h</b> </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="hum">
+                    HUMIDITY:
+                    <div> {{ weather[0].list[0].main.humidity}} <b>%</b> </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="pres"> 
+                    PRESSURE:
+                    <div> {{ weather[0].list[0].main.pressure}} <b>mb</b> </div>
+                  </div>
+                </div>
+                <div class="col-4 col-lg-2 col-sm-4 col-xs-4">
+                  <div class="coord">
+                    <div class="lat">
+                      Lat:
+                      <div> {{  weather[0].list[0].coord.lat }} </div>
+                    </div>
+                    <div class="lon">
+                      Lon:
+                      <div> {{  weather[0].list[0].coord.lon }} </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  
+    
+  
+
+
+
+
+    <!-- <h3>Message:{{ weather.message }}</h3>
+  <h3> Cod: {{ weather.cod }}</h3> 
+  <h3> Count: {{ weather.count }}</h3>
+  <h3> Id:{{ weather.list[0].id }} </h3> 
+  <h3> Name: {{ weather.list[0].name }} </h3>
+  <h3> Latitude: {{ weather.list[0].coord.lat}} </h3>
+  <h3> Longitude: {{ weather.list[0].coord.lat}} </h3>
+  <h3> Temperature: {{ weather.list[0].main.temp}} </h3>
+  <h3> Temperature Minimum: {{ weather.list[0].main.temp_min}} </h3>
+  <h3> Temperature Maximum: {{ weather.list[0].main.temp_max}} </h3>
+  <h3> Pressure: {{ weather.list[0].main.pressure}} </h3>
+  <h3> Humidity: {{ weather.list[0].main.humidity}} </h3>
+  <h3> Dt: {{ weather.list[0].dt}} </h3>
+  <h3> Wind Speed: {{ weather.list[0].wind.speed}} </h3>
+  <h3> Wing Degree: {{ weather.list[0].wind.deg}} </h3>
+  <h3> Country: {{ weather.list[0].sys.country}} </h3>
+  <h3> Rain: {{ weather.list[0].rain | json}} </h3>
+  <h3> Snow: {{ weather.list[0].snow | json}} </h3>
+  <h3> Weather Id: {{ weather.list[0].weather[0].id}} </h3>
+  <h3> Weather Main: {{ weather.list[0].weather[0].main}} </h3>
+  <h3> Weather Icon: {{ weather.list[0].weather[0].icon}} </h3> -->
+
+
+  <!--<div *ngFor='let key of weather.list'>
+   <span> {{key.id}} </span> 
+  </div>
+
+
+  <li *ngFor='let key of weather;'>
+    {{key.id}}
+  </li>
+
+  <div class="main">
+  <div class="main1">
+   <h4>Message:{{ weather.message }}</h4>  
+  </div>
+  </div> -->
+  <!-- Cannot find a differ supporting object '[object Object]' of type 'object'. NgFor only supports binding puneweather Iterables such as Arrays. -->
+
+  <!-- {{ weather.coord.lat | json }} -->
+
+  <!-- hi: <h4 *ngFor='let data of weather'>
+    {{weather.key}}
+  </h4> -->
+  <!-- {{weather.list | json}} -->
+
+
+  <!-- list.Id: <h4 *ngFor="let key of weather">
+    {{key}} -->
+  <!-- </h4> -->
+  <!-- {{ weather.list | json}} -->
+
+  <!-- <div *ngFor='let key of weather'>
+    {{key.id}}
+  </div> -->
+
+
+  <!-- <div *ngFor='let key of weather'>
+    {{key.message}}
+    {{key.cod}}
+    {{key.count}}
+    <div *ngFor='let key of weather'> -->
+      <!-- {{key.message}} 
+  </div> -->
+
+<!--   
+  <li *ngFor='let key of weather;'>
+    {{key}}
+  </li>
+
+ <input type="text" [(ngModel)]="name">
+ <button type="submit" (click)="cal()">submit</button> --> 
